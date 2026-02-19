@@ -11,7 +11,7 @@ import { Separator } from "@/components/ui/separator";
 import {
   HelpCircle, ChevronUp, Sparkles, Copy, GripVertical, Send,
   Loader2, RotateCcw, ChevronDown, ChevronRight, CheckCircle2,
-  AlertCircle, Ticket, Brain, MessageSquare, Tag
+  AlertCircle, Ticket, Brain, MessageSquare, Tag, Maximize2, Bot
 } from "lucide-react";
 
 function TooltipIcon() {
@@ -243,7 +243,8 @@ export default function App() {
   const [instructions, setInstructions] = useState(
     "Analyze a customer message, detect intent and sentiment, and automatically create Zendesk support tickets\nAnalyze the message to extract issue summary, sentiment, priority, and tags.\nIf it's a support issue, call zendesk_create_ticket with structured details.\nGenerate a short message for our internal team about the ticket including the ticket id"
   );
-  const [activeTab, setActiveTab] = useState("chat-with-agent");
+  const [activeTab, setActiveTab] = useState("agent-output");
+  const [agentOutputSubTab, setAgentOutputSubTab] = useState("model-response");
   const [splitPct, setSplitPct] = useState(50);
   const [inputJson, setInputJson] = useState(`{\n  "customer_message": "I've been charged twice for my subscription this month and I need an immediate refund.",\n  "customer_id": "CUST-8821",\n  "channel": "email"\n}`);
   const [mockJson, setMockJson] = useState(`{\n  "ticket_id": "TKT-00421",\n  "status": "created",\n  "priority": "high"\n}`);
@@ -345,13 +346,14 @@ export default function App() {
           {/* Right Panel */}
           <div className="flex flex-col overflow-hidden border-l" style={{ width: `${100 - splitPct}%` }}>
             <div className="shrink-0">
-              <div className="px-6 pt-4 border-b">
+              <div className="px-6 pt-4 border-b flex items-end justify-between">
                 <Tabs value={activeTab} onValueChange={setActiveTab}>
                   <TabsList className="bg-transparent p-0 h-auto gap-0">
                     {[
                       { id: "input", label: "Input" },
-                      { id: "chat-with-agent", label: "Chat with agent" },
+                      { id: "agent-output", label: "Agent output" },
                       { id: "mock-response", label: "Mock response" },
+                      { id: "chat-with-agent", label: "Chat with agent" },
                     ].map(tab => (
                       <TabsTrigger key={tab.id} value={tab.id}
                         className="bg-transparent px-4 pb-3 rounded-none text-sm data-[state=active]:border-b-2 data-[state=active]:border-slate-900 data-[state=active]:shadow-none whitespace-nowrap">
@@ -360,8 +362,11 @@ export default function App() {
                     ))}
                   </TabsList>
                 </Tabs>
+                <button className="mb-3 p-1 rounded hover:bg-slate-100 text-slate-400 hover:text-slate-600 transition-colors">
+                  <Maximize2 className="h-4 w-4" />
+                </button>
               </div>
-              {activeTab === "chat-with-agent" && (
+              {(activeTab === "agent-output" || activeTab === "chat-with-agent") && (
                 <div className="flex gap-2 px-6 py-3 border-b">
                   <Button size="sm" className="bg-slate-900 hover:bg-slate-700 text-white">Test agent</Button>
                   <Button size="sm" variant="outline">Compare models</Button>
@@ -371,6 +376,34 @@ export default function App() {
             </div>
 
             <div className="flex-1 overflow-hidden flex flex-col">
+              {activeTab === "agent-output" && (
+                <div className="flex flex-col h-full">
+                  {/* Agent output sub-tabs */}
+                  <div className="px-6 border-b shrink-0">
+                    <Tabs value={agentOutputSubTab} onValueChange={setAgentOutputSubTab}>
+                      <TabsList className="bg-transparent p-0 h-auto gap-0">
+                        {[
+                          { id: "model-response", label: "Model response" },
+                          { id: "agent-trace", label: "Agent trace" },
+                        ].map(tab => (
+                          <TabsTrigger key={tab.id} value={tab.id}
+                            className="bg-transparent px-4 pb-3 rounded-none text-sm data-[state=active]:border-b-2 data-[state=active]:border-slate-900 data-[state=active]:shadow-none whitespace-nowrap">
+                            {tab.label}
+                          </TabsTrigger>
+                        ))}
+                      </TabsList>
+                    </Tabs>
+                  </div>
+                  {/* Empty state */}
+                  <div className="flex-1 flex flex-col items-center justify-center gap-3 text-center px-8">
+                    <div className="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center">
+                      <Bot className="h-6 w-6 text-slate-400" />
+                    </div>
+                    <p className="text-sm text-muted-foreground">Click 'Test agent' to run the agent and view results.</p>
+                  </div>
+                </div>
+              )}
+
               {activeTab === "input" && (
                 <div className="flex flex-col h-full">
                   <div className="px-6 pt-4 pb-2 shrink-0">
