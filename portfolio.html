@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alex Monroe — Photographer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script>
+    tailwind = { config: {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['Playfair Display', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }};
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="antialiased bg-white text-stone-900">
+
+  <!-- ─── NAVBAR ───────────────────────────────────────────────── -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-stone-100">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="#hero" class="font-serif text-xl font-semibold tracking-tight text-stone-900">Alex Monroe</a>
+
+      <ul class="hidden md:flex items-center gap-8">
+        <li><a href="#work"     class="text-sm text-stone-500 hover:text-stone-900 transition-colors">Work</a></li>
+        <li><a href="#about"    class="text-sm text-stone-500 hover:text-stone-900 transition-colors">About</a></li>
+        <li><a href="#services" class="text-sm text-stone-500 hover:text-stone-900 transition-colors">Services</a></li>
+        <li><a href="#contact"  class="text-sm text-stone-500 hover:text-stone-900 transition-colors">Contact</a></li>
+      </ul>
+
+      <a href="#contact" class="hidden md:inline-flex items-center gap-2 bg-stone-900 text-white text-sm px-5 py-2.5 rounded-full hover:bg-stone-700 transition-colors">
+        Book a session
+      </a>
+
+      <!-- Hamburger -->
+      <button id="menu-toggle" class="md:hidden p-2 flex flex-col gap-1" aria-label="Toggle menu">
+        <span id="bar1" class="block w-5 h-0.5 bg-stone-700 transition-all duration-300"></span>
+        <span id="bar2" class="block w-5 h-0.5 bg-stone-700 transition-all duration-300"></span>
+        <span id="bar3" class="block w-5 h-0.5 bg-stone-700 transition-all duration-300"></span>
+      </button>
+    </div>
+
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-stone-100 px-6 py-4 flex flex-col gap-4">
+      <a href="#work"     class="text-stone-700 text-sm py-1">Work</a>
+      <a href="#about"    class="text-stone-700 text-sm py-1">About</a>
+      <a href="#services" class="text-stone-700 text-sm py-1">Services</a>
+      <a href="#contact"  class="text-stone-700 text-sm py-1">Contact</a>
+      <a href="#contact"  class="bg-stone-900 text-white text-sm px-5 py-2.5 rounded-full text-center">Book a session</a>
+    </div>
+  </nav>
+
+  <!-- ─── HERO ─────────────────────────────────────────────────── -->
+  <section id="hero" class="relative min-h-screen flex items-end pb-24 overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="https://picsum.photos/seed/hero-portrait/1600/900" alt="" class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-t from-stone-900/80 via-stone-900/20 to-transparent"></div>
+    </div>
+
+    <div class="relative z-10 max-w-6xl mx-auto px-6 w-full">
+      <p class="text-stone-300 text-sm tracking-[0.2em] uppercase mb-4">Photographer &amp; Visual Storyteller</p>
+      <h1 class="font-serif text-5xl md:text-7xl font-semibold text-white leading-tight mb-6 max-w-3xl">
+        Light, Emotion,<br/>Moments Kept.
+      </h1>
+      <p class="text-stone-300 text-lg max-w-xl mb-10 leading-relaxed">
+        Based in New York. Available worldwide. I photograph weddings, portraits, and commercial
+        projects with honesty and quiet attention to detail.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="#work" class="inline-flex items-center gap-2 bg-white text-stone-900 text-sm font-medium px-6 py-3 rounded-full hover:bg-stone-100 transition-colors">
+          View my work &nbsp;→
+        </a>
+        <a href="#contact" class="inline-flex items-center gap-2 border border-white/50 text-white text-sm px-6 py-3 rounded-full hover:bg-white/10 transition-colors">
+          Get in touch
+        </a>
+      </div>
+
+      <div class="mt-16 flex flex-wrap gap-10">
+        <div><p class="font-serif text-3xl font-semibold text-white">12+</p><p class="text-stone-400 text-sm mt-1">Years experience</p></div>
+        <div><p class="font-serif text-3xl font-semibold text-white">800+</p><p class="text-stone-400 text-sm mt-1">Sessions completed</p></div>
+        <div><p class="font-serif text-3xl font-semibold text-white">40+</p><p class="text-stone-400 text-sm mt-1">Weddings captured</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── WORK / GALLERY ───────────────────────────────────────── -->
+  <section id="work" class="py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div>
+          <p class="text-stone-400 text-sm tracking-widest uppercase mb-2">Portfolio</p>
+          <h2 class="font-serif text-4xl font-semibold text-stone-900">Selected work</h2>
+        </div>
+        <div id="filter-buttons" class="flex flex-wrap gap-2"></div>
+      </div>
+
+      <div class="grid grid-cols-3 auto-rows-[220px] gap-4" id="gallery-grid">
+
+        <div class="gallery-item group relative overflow-hidden rounded-xl bg-stone-100 col-span-2" data-category="Portrait">
+          <img src="https://picsum.photos/seed/photo1/800/600" alt="Portrait session" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+          <div class="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/40 transition-colors duration-300 flex items-end p-4">
+            <div class="overlay-text translate-y-4 opacity-0 transition-all duration-300">
+              <span class="text-[10px] text-stone-300 uppercase tracking-widest block">Portrait</span>
+              <span class="text-white text-sm font-medium">Portrait session</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item group relative overflow-hidden rounded-xl bg-stone-100" data-category="Landscape">
+          <img src="https://picsum.photos/seed/photo2/600/600" alt="Landscape shoot" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+          <div class="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/40 transition-colors duration-300 flex items-end p-4">
+            <div class="overlay-text translate-y-4 opacity-0 transition-all duration-300">
+              <span class="text-[10px] text-stone-300 uppercase tracking-widest block">Landscape</span>
+              <span class="text-white text-sm font-medium">Landscape shoot</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item group relative overflow-hidden rounded-xl bg-stone-100" data-category="Wedding">
+          <img src="https://picsum.photos/seed/photo3/600/600" alt="Wedding ceremony" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+          <div class="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/40 transition-colors duration-300 flex items-end p-4">
+            <div class="overlay-text translate-y-4 opacity-0 transition-all duration-300">
+              <span class="text-[10px] text-stone-300 uppercase tracking-widest block">Wedding</span>
+              <span class="text-white text-sm font-medium">Wedding ceremony</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item group relative overflow-hidden rounded-xl bg-stone-100 row-span-2" data-category="Street">
+          <img src="https://picsum.photos/seed/photo4/600/900" alt="Street photography" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+          <div class="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/40 transition-colors duration-300 flex items-end p-4">
+            <div class="overlay-text translate-y-4 opacity-0 transition-all duration-300">
+              <span class="text-[10px] text-stone-300 uppercase tracking-widest block">Street</span>
+              <span class="text-white text-sm font-medium">Street photography</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item group relative overflow-hidden rounded-xl bg-stone-100" data-category="Editorial">
+          <img src="https://picsum.photos/seed/photo5/600/400" alt="Editorial fashion" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+          <div class="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/40 transition-colors duration-300 flex items-end p-4">
+            <div class="overlay-text translate-y-4 opacity-0 transition-all duration-300">
+              <span class="text-[10px] text-stone-300 uppercase tracking-widest block">Editorial</span>
+              <span class="text-white text-sm font-medium">Editorial fashion</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item group relative overflow-hidden rounded-xl bg-stone-100" data-category="Nature">
+          <img src="https://picsum.photos/seed/photo6/600/400" alt="Nature macro" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+          <div class="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/40 transition-colors duration-300 flex items-end p-4">
+            <div class="overlay-text translate-y-4 opacity-0 transition-all duration-300">
+              <span class="text-[10px] text-stone-300 uppercase tracking-widest block">Nature</span>
+              <span class="text-white text-sm font-medium">Nature macro</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item group relative overflow-hidden rounded-xl bg-stone-100 col-span-2" data-category="Event">
+          <img src="https://picsum.photos/seed/photo7/800/500" alt="Corporate event" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+          <div class="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/40 transition-colors duration-300 flex items-end p-4">
+            <div class="overlay-text translate-y-4 opacity-0 transition-all duration-300">
+              <span class="text-[10px] text-stone-300 uppercase tracking-widest block">Event</span>
+              <span class="text-white text-sm font-medium">Corporate event</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="mt-10 text-center">
+        <button class="inline-flex items-center gap-2 text-stone-600 text-sm border border-stone-200 px-6 py-2.5 rounded-full hover:border-stone-400 transition-colors">
+          View full portfolio &nbsp;→
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ABOUT ─────────────────────────────────────────────────── -->
+  <section id="about" class="py-24 bg-stone-50">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-16 items-center">
+
+        <div class="relative">
+          <div class="aspect-[4/5] rounded-2xl overflow-hidden bg-stone-200">
+            <img src="https://picsum.photos/seed/photographer/600/750" alt="Alex Monroe" class="w-full h-full object-cover" />
+          </div>
+          <div class="absolute -bottom-6 -right-6 bg-white rounded-2xl p-5 shadow-lg" style="max-width:180px">
+            <p class="font-serif text-3xl font-semibold text-stone-900">12</p>
+            <p class="text-stone-500 text-sm">Years capturing life's best moments</p>
+          </div>
+        </div>
+
+        <div>
+          <p class="text-stone-400 text-sm tracking-widest uppercase mb-3">About me</p>
+          <h2 class="font-serif text-4xl font-semibold text-stone-900 mb-6 leading-tight">
+            I believe every frame<br/>tells a true story.
+          </h2>
+          <p class="text-stone-600 leading-relaxed mb-4">
+            Hi, I'm Alex Monroe — a New York-based photographer specializing in weddings, portraits,
+            and commercial work. My approach is rooted in patience and observation: I wait for the
+            real moments rather than directing them.
+          </p>
+          <p class="text-stone-600 leading-relaxed mb-8">
+            My work has been published in Vogue, Kinfolk, and The New York Times. I've had the
+            privilege of shooting in over 30 countries, always with the same kit and the same quiet intention.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-8">
+            <span class="text-sm text-stone-600 bg-stone-100 px-3 py-1 rounded-full">Nikon Z9</span>
+            <span class="text-sm text-stone-600 bg-stone-100 px-3 py-1 rounded-full">Natural light</span>
+            <span class="text-sm text-stone-600 bg-stone-100 px-3 py-1 rounded-full">Studio</span>
+            <span class="text-sm text-stone-600 bg-stone-100 px-3 py-1 rounded-full">35mm film</span>
+            <span class="text-sm text-stone-600 bg-stone-100 px-3 py-1 rounded-full">Medium format</span>
+          </div>
+          <a href="#contact" class="inline-flex items-center gap-2 bg-stone-900 text-white text-sm px-6 py-3 rounded-full hover:bg-stone-700 transition-colors">
+            Work with me
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SERVICES ──────────────────────────────────────────────── -->
+  <section id="services" class="py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-14">
+        <p class="text-stone-400 text-sm tracking-widest uppercase mb-2">What I offer</p>
+        <h2 class="font-serif text-4xl font-semibold text-stone-900">Services</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="border border-stone-200 rounded-2xl p-8 hover:border-stone-400 hover:bg-stone-50 transition-all cursor-default">
+          <span class="text-3xl block mb-5 text-stone-400">◎</span>
+          <h3 class="font-serif text-xl font-semibold text-stone-900 mb-3">Portrait &amp; Lifestyle</h3>
+          <p class="text-stone-500 text-sm leading-relaxed">Individual, couple, and family portraits that capture genuine emotion and personality.</p>
+        </div>
+        <div class="border border-stone-200 rounded-2xl p-8 hover:border-stone-400 hover:bg-stone-50 transition-all cursor-default">
+          <span class="text-3xl block mb-5 text-stone-400">◇</span>
+          <h3 class="font-serif text-xl font-semibold text-stone-900 mb-3">Wedding &amp; Events</h3>
+          <p class="text-stone-500 text-sm leading-relaxed">Full-day coverage of your most important moments, delivered as timeless images.</p>
+        </div>
+        <div class="border border-stone-200 rounded-2xl p-8 hover:border-stone-400 hover:bg-stone-50 transition-all cursor-default">
+          <span class="text-3xl block mb-5 text-stone-400">▣</span>
+          <h3 class="font-serif text-xl font-semibold text-stone-900 mb-3">Commercial &amp; Editorial</h3>
+          <p class="text-stone-500 text-sm leading-relaxed">Brand photography, product shots, and editorial spreads for print and digital media.</p>
+        </div>
+        <div class="border border-stone-200 rounded-2xl p-8 hover:border-stone-400 hover:bg-stone-50 transition-all cursor-default">
+          <span class="text-3xl block mb-5 text-stone-400">△</span>
+          <h3 class="font-serif text-xl font-semibold text-stone-900 mb-3">Landscape &amp; Travel</h3>
+          <p class="text-stone-500 text-sm leading-relaxed">Fine art landscape prints and destination photography for private collectors.</p>
+        </div>
+      </div>
+
+      <div class="mt-12 bg-stone-900 rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div>
+          <h3 class="font-serif text-2xl font-semibold text-white mb-2">Custom packages available</h3>
+          <p class="text-stone-400 text-sm max-w-md">Every project is unique. Reach out and I'll put together a tailored quote based on your needs, timeline, and location.</p>
+        </div>
+        <a href="#contact" class="shrink-0 inline-flex items-center gap-2 bg-white text-stone-900 text-sm font-medium px-6 py-3 rounded-full hover:bg-stone-100 transition-colors whitespace-nowrap">
+          Request a quote &nbsp;→
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TESTIMONIALS ──────────────────────────────────────────── -->
+  <section class="py-24 bg-stone-50">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-14">
+        <p class="text-stone-400 text-sm tracking-widest uppercase mb-2">Kind words</p>
+        <h2 class="font-serif text-4xl font-semibold text-stone-900">Client stories</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-2xl p-8 border border-stone-100">
+          <p class="text-stone-500 text-sm leading-relaxed mb-6 italic">"Alex captured our wedding day perfectly — every glance, every laugh. We couldn't be happier."</p>
+          <p class="font-semibold text-stone-900 text-sm">Maya &amp; Luca</p>
+          <p class="text-stone-400 text-xs mt-0.5">Wedding clients</p>
+        </div>
+        <div class="bg-white rounded-2xl p-8 border border-stone-100">
+          <p class="text-stone-500 text-sm leading-relaxed mb-6 italic">"The product shots transformed our entire brand presence. Truly world-class work."</p>
+          <p class="font-semibold text-stone-900 text-sm">Sarah Chen</p>
+          <p class="text-stone-400 text-xs mt-0.5">Creative Director, Luma Studio</p>
+        </div>
+        <div class="bg-white rounded-2xl p-8 border border-stone-100">
+          <p class="text-stone-500 text-sm leading-relaxed mb-6 italic">"Working with Alex was effortless. The portraits felt natural, not staged — exactly what we wanted."</p>
+          <p class="font-semibold text-stone-900 text-sm">James Hartley</p>
+          <p class="text-stone-400 text-xs mt-0.5">Portrait client</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CONTACT ───────────────────────────────────────────────── -->
+  <section id="contact" class="py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-16">
+
+        <div>
+          <p class="text-stone-400 text-sm tracking-widest uppercase mb-3">Get in touch</p>
+          <h2 class="font-serif text-4xl font-semibold text-stone-900 mb-6 leading-tight">
+            Let's create something<br/>beautiful together.
+          </h2>
+          <p class="text-stone-500 leading-relaxed mb-10">
+            Whether you're planning a wedding, need brand imagery, or just want to talk cameras —
+            I'd love to hear from you. I typically respond within 24 hours.
+          </p>
+          <div class="space-y-4">
+            <div class="flex gap-4">
+              <span class="text-stone-400 text-sm w-20 shrink-0">Email</span>
+              <span class="text-stone-700 text-sm">hello@alexmonroe.photo</span>
+            </div>
+            <div class="flex gap-4">
+              <span class="text-stone-400 text-sm w-20 shrink-0">Phone</span>
+              <span class="text-stone-700 text-sm">+1 (212) 555-0148</span>
+            </div>
+            <div class="flex gap-4">
+              <span class="text-stone-400 text-sm w-20 shrink-0">Based in</span>
+              <span class="text-stone-700 text-sm">New York, NY — available worldwide</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <!-- Success state (hidden by default) -->
+          <div id="form-success" class="hidden flex-col items-center justify-center text-center py-16">
+            <div class="w-14 h-14 rounded-full bg-stone-100 flex items-center justify-center text-2xl mb-4">✓</div>
+            <h3 class="font-serif text-2xl font-semibold text-stone-900 mb-2">Message received</h3>
+            <p class="text-stone-500 text-sm">I'll be in touch within 24 hours.</p>
+          </div>
+
+          <form id="contact-form" class="space-y-5">
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs text-stone-500 mb-1.5">Your name</label>
+                <input type="text" required placeholder="Jane Smith"
+                  class="w-full border border-stone-200 rounded-xl px-4 py-3 text-sm text-stone-800 placeholder-stone-300 focus:outline-none focus:border-stone-400 transition-colors" />
+              </div>
+              <div>
+                <label class="block text-xs text-stone-500 mb-1.5">Email address</label>
+                <input type="email" required placeholder="jane@example.com"
+                  class="w-full border border-stone-200 rounded-xl px-4 py-3 text-sm text-stone-800 placeholder-stone-300 focus:outline-none focus:border-stone-400 transition-colors" />
+              </div>
+            </div>
+            <div>
+              <label class="block text-xs text-stone-500 mb-1.5">Service</label>
+              <select class="w-full border border-stone-200 rounded-xl px-4 py-3 text-sm text-stone-800 focus:outline-none focus:border-stone-400 transition-colors bg-white">
+                <option value="">Select a service…</option>
+                <option>Portrait &amp; Lifestyle</option>
+                <option>Wedding &amp; Events</option>
+                <option>Commercial &amp; Editorial</option>
+                <option>Landscape &amp; Travel</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs text-stone-500 mb-1.5">Tell me about your project</label>
+              <textarea required rows="5" placeholder="Describe your vision, date, location, and anything else that's relevant…"
+                class="w-full border border-stone-200 rounded-xl px-4 py-3 text-sm text-stone-800 placeholder-stone-300 focus:outline-none focus:border-stone-400 transition-colors resize-none"></textarea>
+            </div>
+            <button type="submit" class="w-full bg-stone-900 text-white text-sm font-medium py-3.5 rounded-xl hover:bg-stone-700 transition-colors">
+              Send message &nbsp;→
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ────────────────────────────────────────────────── -->
+  <footer class="py-10 bg-stone-900 text-stone-400">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+      <p class="font-serif text-white text-lg font-semibold">Alex Monroe</p>
+      <div class="flex items-center gap-8 text-sm">
+        <a href="#work"     class="hover:text-white transition-colors">Work</a>
+        <a href="#about"    class="hover:text-white transition-colors">About</a>
+        <a href="#services" class="hover:text-white transition-colors">Services</a>
+        <a href="#contact"  class="hover:text-white transition-colors">Contact</a>
+      </div>
+      <div class="flex items-center gap-4 text-sm">
+        <a href="#" class="hover:text-white transition-colors">Instagram</a>
+        <a href="#" class="hover:text-white transition-colors">LinkedIn</a>
+        <a href="#" class="hover:text-white transition-colors">Behance</a>
+      </div>
+    </div>
+    <div class="max-w-6xl mx-auto px-6 mt-8 pt-6 border-t border-stone-800 flex flex-col md:flex-row justify-between gap-2 text-xs text-stone-600">
+      <p>© 2026 Alex Monroe Photography. All rights reserved.</p>
+      <p>New York · London · Tokyo</p>
+    </div>
+  </footer>
+
+  <!-- ─── SCRIPTS ───────────────────────────────────────────────── -->
+  <script>
+    /* ── Mobile menu ── */
+    const toggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const [bar1, bar2, bar3] = ['bar1','bar2','bar3'].map(id => document.getElementById(id));
+    let menuOpen = false;
+
+    toggle.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      mobileMenu.classList.toggle('hidden', !menuOpen);
+      bar1.style.transform = menuOpen ? 'rotate(45deg) translate(3px, 3px)' : '';
+      bar2.style.opacity   = menuOpen ? '0' : '';
+      bar3.style.transform = menuOpen ? 'rotate(-45deg) translate(3px, -3px)' : '';
+    });
+
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      menuOpen = false;
+      mobileMenu.classList.add('hidden');
+      [bar1, bar2, bar3].forEach(b => { b.style.transform = ''; b.style.opacity = ''; });
+    }));
+
+    /* ── Gallery hover overlay (CSS group-hover needs JS fallback for overlay-text) ── */
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      const overlay = item.querySelector('.overlay-text');
+      item.addEventListener('mouseenter', () => {
+        overlay.style.transform = 'translateY(0)';
+        overlay.style.opacity = '1';
+      });
+      item.addEventListener('mouseleave', () => {
+        overlay.style.transform = 'translateY(1rem)';
+        overlay.style.opacity = '0';
+      });
+    });
+
+    /* ── Gallery filter ── */
+    const CATEGORIES = ['All', 'Portrait', 'Landscape', 'Wedding', 'Editorial', 'Street', 'Nature', 'Event'];
+    const filterContainer = document.getElementById('filter-buttons');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    let activeFilter = 'All';
+
+    function renderFilters() {
+      filterContainer.innerHTML = '';
+      CATEGORIES.forEach(cat => {
+        const btn = document.createElement('button');
+        btn.textContent = cat;
+        const active = cat === activeFilter;
+        btn.className = [
+          'text-sm px-4 py-1.5 rounded-full border transition-colors',
+          active
+            ? 'bg-stone-900 text-white border-stone-900'
+            : 'border-stone-200 text-stone-600 hover:border-stone-400'
+        ].join(' ');
+        btn.addEventListener('click', () => { activeFilter = cat; renderFilters(); filterGallery(); });
+        filterContainer.appendChild(btn);
+      });
+    }
+
+    function filterGallery() {
+      galleryItems.forEach(item => {
+        const show = activeFilter === 'All' || item.dataset.category === activeFilter;
+        item.style.display = show ? '' : 'none';
+      });
+    }
+
+    renderFilters();
+
+    /* ── Contact form ── */
+    const contactForm = document.getElementById('contact-form');
+    const formSuccess = document.getElementById('form-success');
+
+    contactForm.addEventListener('submit', e => {
+      e.preventDefault();
+      contactForm.style.display = 'none';
+      formSuccess.classList.remove('hidden');
+      formSuccess.style.display = 'flex';
+    });
+  </script>
+</body>
+</html>
